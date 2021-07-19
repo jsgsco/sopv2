@@ -12,7 +12,7 @@ const Error = () => {
     const history = useHistory()
 
     setTimeout(() => {
-        history.push('/sign')
+        history.push('/')
     }, 3000);
 
     return (
