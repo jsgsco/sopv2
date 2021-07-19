@@ -7,8 +7,3 @@ export const ContainerError = styled.div`
     justify-content: center;
     align-items: center;
 `
-
-export const Contain = styled.div`
-    width: 50%;
-    padding: 0.625rem;
-`
