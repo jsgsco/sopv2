@@ -53,7 +53,7 @@ export const Button = styled.button`
 
 export const Text = styled.h2`
     width: 100%;
-    text-align: center;
+    text-align: ${(props) => props.nc ? '' : 'center'};
     text-transform: uppercase;
     font-size: 1.063rem; /* 17px */
     padding: 0.625rem; /* 10px */
