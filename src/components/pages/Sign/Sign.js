@@ -1,5 +1,6 @@
 import styled from 'styled-components'
-import { useState } from 'react'
+import { Helmet } from 'react-helmet'
+import { Fragment, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useSign } from '../../../context/SignContext'
 import { ContainerForm, ContainerInput, Form, Input, Button, Text } from '../../style/ElementForms'
@@ -203,48 +204,53 @@ const SignIn = () => {
     }
 
     return (
-        <ContainerForm>
-            <Form onSubmit={ stateRecover ? handleRecoverPass : handleSubmit }>
-                {
-                    alert.state ? (
-                        <Alerta success={alert.type}> {alert.message} </Alerta>
-                    ) : null
-                }
-                <Text>{ stateRecover ? '¿Olvidaste tu cuenta? Recuperala ahora' : '¿Tienes cuenta? Inicia sesion ahora' }</Text>
-                <ContainerInput>
-                    <Input 
-                        name="email"
-                        type="text"
-                        placeholder="Ingresa tu Correo"
-                        onChange={handleChange}
-                        value={email}
-                    />
-                </ContainerInput>
-                {
-                    stateRecover ? null : (
-                        <ContainerInput mt>
-                            <Input 
-                                name="password"
-                                type="password"
-                                placeholder="Ingresa tu Contraseña"
-                                onChange={handleChange}
-                                value={password}
-                            />
-                        </ContainerInput>
-                    )
-                }
-                <Button mt
-                    type="submit"
-                >{ stateRecover ? 'Recuperar cuenta' : 'Iniciar sesion' }</Button>
-                <Button
-                    mt
-                    primary 
-                    type="button"
-                    onClick={handleRecover}
-                >{ stateRecover ? '¿Tienes cuenta? Ingresa ahora' : '¿Haz olvidado tu contraseña? Recuperala ahora'}</Button>
-            </Form>
-            <Image />
-        </ContainerForm>
+        <Fragment>
+            <Helmet>
+                <title>Iniciar Sesion</title>
+            </Helmet>
+            <ContainerForm>
+                <Form onSubmit={ stateRecover ? handleRecoverPass : handleSubmit }>
+                    {
+                        alert.state ? (
+                            <Alerta success={alert.type}> {alert.message} </Alerta>
+                        ) : null
+                    }
+                    <Text>{ stateRecover ? '¿Olvidaste tu cuenta? Recuperala ahora' : '¿Tienes cuenta? Inicia sesion ahora' }</Text>
+                    <ContainerInput>
+                        <Input 
+                            name="email"
+                            type="text"
+                            placeholder="Ingresa tu Correo"
+                            onChange={handleChange}
+                            value={email}
+                        />
+                    </ContainerInput>
+                    {
+                        stateRecover ? null : (
+                            <ContainerInput mt>
+                                <Input 
+                                    name="password"
+                                    type="password"
+                                    placeholder="Ingresa tu Contraseña"
+                                    onChange={handleChange}
+                                    value={password}
+                                />
+                            </ContainerInput>
+                        )
+                    }
+                    <Button mt
+                        type="submit"
+                    >{ stateRecover ? 'Recuperar cuenta' : 'Iniciar sesion' }</Button>
+                    <Button
+                        mt
+                        primary 
+                        type="button"
+                        onClick={handleRecover}
+                    >{ stateRecover ? '¿Tienes cuenta? Ingresa ahora' : '¿Haz olvidado tu contraseña? Recuperala ahora'}</Button>
+                </Form>
+                <Image />
+            </ContainerForm>
+        </Fragment>
     )
 }
 
