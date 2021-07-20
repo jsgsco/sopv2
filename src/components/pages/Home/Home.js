@@ -8,7 +8,7 @@ const Home = () => {
     const closeSesion = async () => {
         try {
             await auth.signOut()
-            history.push('/sign')
+            history.push('/iniciar-sesion')
         } catch (error) {
             console.log(error)
         }

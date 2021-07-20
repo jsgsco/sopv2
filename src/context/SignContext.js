@@ -12,11 +12,14 @@ const SignProvider = ({children}) => {
         email: '',
         password: ''
     })
+    const [stateRecover, setStateRecover] = useState(false)
 
     return (
         <SignContext.Provider value={{
             dataForm,
-            setDataForm
+            stateRecover,
+            setDataForm,
+            setStateRecover
         }}>
             {children}
         </SignContext.Provider>
