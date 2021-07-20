@@ -11,7 +11,6 @@ const AuthProvider = ({children}) => {
 
     const [user, setUser] = useState()
     const [charge, setCharge] = useState(true)
-    console.log(user)
 
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
