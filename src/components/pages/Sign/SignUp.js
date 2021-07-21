@@ -48,7 +48,7 @@ const SignUp = () => {
         if(email === '') {
 
             setAlert({
-                message: 'Los campos no pueden ir vacios',
+                message: 'el correo no puede ir vacio.',
                 state: true
             })
             setTimeout(() => setAlert({
@@ -70,7 +70,6 @@ const SignUp = () => {
                 state: false
             }), 2500)
             return
-
         }
     }
     
@@ -79,13 +78,13 @@ const SignUp = () => {
     return (
         <Fragment>
             <Helmet>
-                <title>Iniciar Sesion</title>
+                <title>Registrar nuevo usuario</title>
             </Helmet>
             <ContainerForm>
                 <Form onSubmit={handleSubmit}>
                     {
                         alert.state ? (
-                            <Alerta success={alert.type}> {alert.message} </Alerta>
+                            <Alerta success={alert.type}> {alert.message}</Alerta>
                         ) : null
                     }
                     <Text>Registrar nuevo empleado o usuario</Text>
