@@ -1,5 +1,7 @@
 const SignUp = () => {
-    return ('asdasd');
+    return (
+        <h1>sjjsjs</h1>
+    );
 }
  
 export default SignUp;
