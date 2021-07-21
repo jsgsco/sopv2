@@ -7,6 +7,7 @@ import Error from './components/pages/Error/Error'
 import ListReport from './components/pages/ListReport/ListReport'
 import { AuthProvider } from './context/AuthContext'
 import { SignProvider } from './context/SignContext'
+import { PanelProvider } from './context/PanelContext'
 import RoutePrivate from './components/RoutePrivate'
 
 
@@ -14,21 +15,23 @@ function App() {
   return (
     <AuthProvider>
       <SignProvider>
-          <Container>
-            <Router>
-              <Switch>
-                  <RoutePrivate path="/" exact>
-                    <Home />
-                  </RoutePrivate>
-                  <RoutePrivate path="/crear-cuenta" exact>
-                    <SignUp />
-                  </RoutePrivate>
-                  <Route path="/iniciar-sesion" component={SignIn} exact/>
-                  <Route path="/lista-objetos" component={ListReport} exact/>
-                  <Route path="/**" component={Error} exact/>
-              </Switch>
-            </Router>
-          </Container>
+        <PanelProvider>
+            <Container>
+              <Router>
+                <Switch>
+                    <RoutePrivate path="/" exact>
+                      <Home />
+                    </RoutePrivate>
+                    <RoutePrivate path="/crear-cuenta" exact>
+                      <SignUp />
+                    </RoutePrivate>
+                    <Route path="/iniciar-sesion" component={SignIn} exact/>
+                    <Route path="/lista-objetos" component={ListReport} exact/>
+                    <Route path="/**" component={Error} exact/>
+                </Switch>
+              </Router>
+            </Container>
+        </PanelProvider>
       </SignProvider>
     </AuthProvider>
   );

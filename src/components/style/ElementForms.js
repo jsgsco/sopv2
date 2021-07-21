@@ -60,3 +60,15 @@ export const Text = styled.h2`
     font-size: 1.063rem; /* 17px */
     padding: 0.625rem; /* 10px */
 `
+
+export const InputArea = styled.textarea`
+    width: 100%;
+    padding: 0.75rem; /* 12px */
+    border: none;
+    border-radius: 0.5rem; /* 8px */
+    background-color: #F2F2F2;
+    margin-top: ${(props) => props.mt ? '0.38rem' : ''};
+    &:focus {
+        outline: none;
+    }
+`
