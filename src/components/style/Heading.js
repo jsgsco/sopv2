@@ -19,6 +19,10 @@ export const Header = styled.div`
 export const Profile = styled.div`
     width: 50%;
     margin-right: 5px;
+
+    @media(max-width: 60rem){ 
+        width: 100%;
+    }
 `
 
 export const Text = styled.p`
