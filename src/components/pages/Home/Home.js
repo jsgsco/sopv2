@@ -23,7 +23,10 @@ const Home = () => {
                     <Text>Hola, foeblackg@gmail.com es un placer tenerte aqui!</Text>
                 </Profile>
                 <Settings>
-                    Configuraciones
+                    <button
+                        onClick={closeSesion}
+                        type="button"
+                    >Cerrar Sesion</button>
                 </Settings>
             </Header>
             Texto plano
