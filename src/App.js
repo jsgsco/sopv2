@@ -4,6 +4,7 @@ import Home from './components/pages/Home/Home'
 import SignIn from './components/pages/Sign/SignIn'
 import SignUp from './components/pages/Sign/SignUp'
 import Error from './components/pages/Error/Error'
+import ListReport from './components/pages/ListReport/ListReport'
 import { AuthProvider } from './context/AuthContext'
 import { SignProvider } from './context/SignContext'
 import RoutePrivate from './components/RoutePrivate'
@@ -23,6 +24,7 @@ function App() {
                     <SignUp />
                   </RoutePrivate>
                   <Route path="/iniciar-sesion" component={SignIn} exact/>
+                  <Route path="/lista-objetos" component={ListReport} exact/>
                   <Route path="/**" component={Error} exact/>
               </Switch>
             </Router>
