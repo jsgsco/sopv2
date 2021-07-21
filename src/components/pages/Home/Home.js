@@ -1,5 +1,7 @@
 import { auth } from "../../../firebase"
 import { useHistory } from 'react-router-dom'
+import { HeadingContainer, Header, Profile, Settings, Text } from '../../style/Heading'
+import { useAuth } from '../../../context/AuthContext'
 
 const Home = () => {
 
@@ -15,12 +17,17 @@ const Home = () => {
     }
 
     return (
-        <div>
-            <button
-                type="button"
-                onClick={closeSesion}
-            >Cerrar Sesion</button>
-        </div>
+        <HeadingContainer>
+            <Header>
+                <Profile>
+                    <Text>Hola, foeblackg@gmail.com es un placer tenerte aqui!</Text>
+                </Profile>
+                <Settings>
+                    Configuraciones
+                </Settings>
+            </Header>
+            Texto plano
+        </HeadingContainer>
     )
 }
 
