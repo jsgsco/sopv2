@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 import { Helmet } from 'react-helmet'
 import { Fragment, useState } from 'react'
-import { useHistory } from 'react-router-dom'
 import { ContainerForm, ContainerInput, Form, Input, Button, Text } from '../../style/ElementForms'
-import { ReactComponent as Login } from '../../../images/login2.svg'
+import { ReactComponent as Login } from '../../../images/register.svg'
 import { Alerta } from '../../style/Alerta'
 
 import { useSign } from '../../../context/SignContext'
+import { usePanel } from '../../../context/PanelContext'
 // import { auth } from '../../../firebase'
 
 const Image = styled(Login)`
@@ -19,7 +19,7 @@ const Image = styled(Login)`
 
 const SignUp = () => {
 
-    const history = useHistory()
+    const { newRegister, setNewRegister } = usePanel()
     const expReg =  /[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+/
     const { dataForm, setDataForm} = useSign()
     const {email} = dataForm
@@ -28,11 +28,6 @@ const SignUp = () => {
         type: '',
         state: false
     })
-
-
-    const handleCancelRegister = () => {
-        history.push('/')
-    }
     
     const handleChange = (e) => {
         setDataForm({
@@ -73,12 +68,14 @@ const SignUp = () => {
         }
     }
     
-
+    const handleCancelNewRegister = () => {
+        setNewRegister(!newRegister)
+    }
 
     return (
         <Fragment>
             <Helmet>
-                <title>Registrar nuevo usuario</title>
+                <title>Registrar Nuevo Empleado</title>
             </Helmet>
             <ContainerForm>
                 <Form onSubmit={handleSubmit}>
@@ -97,16 +94,14 @@ const SignUp = () => {
                             value={email}
                         />
                     </ContainerInput>
-
-
                     <Button mt
                         type="submit"
-                    >{'Crear cuenta'}</Button>
+                    >Crear cuenta</Button>
                     <Button
                         mt
                         primary 
                         type="button"
-                        onClick={handleCancelRegister}
+                        onClick={handleCancelNewRegister}
                     >Cancelar Registro</Button>
                 </Form>
                 <Image />

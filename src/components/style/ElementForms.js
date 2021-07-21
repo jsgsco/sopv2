@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 export const ContainerForm = styled.div`
     width: 100%;
@@ -71,4 +72,9 @@ export const InputArea = styled.textarea`
     &:focus {
         outline: none;
     }
+`
+
+export const ButtonLink = styled(Link)`
+    text-decoration: none;
+    color: white;
 `

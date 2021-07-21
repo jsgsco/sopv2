@@ -11,6 +11,7 @@ const usePanel = () => {
 const PanelProvider = ({children}) => {
 
     const [register, setRegister] = useState(false)
+    const [newRegister, setNewRegister] = useState(false)
 
     const history = useHistory()
     const handleCloseSesion = async () => {
@@ -24,7 +25,9 @@ const PanelProvider = ({children}) => {
 
     return ( 
         <PanelContext.Provider value={{
-            register, 
+            register,
+            newRegister,
+            setNewRegister,
             setRegister,
             handleCloseSesion
         }}>
