@@ -11,3 +11,7 @@ export const Alerta = styled.p`
     text-transform: uppercase;
     font-weight: 600;
 `
+
+export const ContainerAlerta = styled.div`
+    width: 50%;
+`

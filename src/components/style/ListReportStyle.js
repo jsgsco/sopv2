@@ -3,11 +3,15 @@ import styled from "styled-components";
 export const Table = styled.table`
     border-radius: 2px;
     border-collapse: collapse;
-    border: solid 2px black;
+    background-color: #2a3338;
+    margin-top: 5%;
 `
 
 export const TableRow = styled.tr`
     text-align: center;
+    &:hover {
+        background-color: #4e575c;
+    }
 `
 
 export const TableHead = styled.th`
@@ -18,6 +22,5 @@ export const TableHead = styled.th`
 
 export const Cell = styled.td`
     padding: 7px 12px;
-    background-color: #2a3338;
     color: white;
 `

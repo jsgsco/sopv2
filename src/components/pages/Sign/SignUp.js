@@ -7,7 +7,7 @@ import { ReactComponent as Login } from '../../../images/login2.svg'
 import { Alerta } from '../../style/Alerta'
 
 import { useSign } from '../../../context/SignContext'
-import { auth } from '../../../firebase'
+// import { auth } from '../../../firebase'
 
 const Image = styled(Login)`
     width: 40%;
