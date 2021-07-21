@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Container } from './components/style/Container'
 import Home from './components/pages/Home/Home'
 import SignIn from './components/pages/Sign/SignIn'
+import SignUp from './components/pages/Sign/SignUp'
 import Error from './components/pages/Error/Error'
 import { AuthProvider } from './context/AuthContext'
 import { SignProvider } from './context/SignContext'
@@ -17,6 +18,9 @@ function App() {
               <Switch>
                   <RoutePrivate path="/" exact>
                     <Home />
+                  </RoutePrivate>
+                  <RoutePrivate path="/crear-cuenta" exact>
+                    <SignUp />
                   </RoutePrivate>
                   <Route path="/iniciar-sesion" component={SignIn} exact/>
                   <Route path="/**" component={Error} exact/>

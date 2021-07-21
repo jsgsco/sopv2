@@ -2,11 +2,11 @@ import styled from 'styled-components'
 import { Helmet } from 'react-helmet'
 import { Fragment, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { useSign } from '../../../context/SignContext'
 import { ContainerForm, ContainerInput, Form, Input, Button, Text } from '../../style/ElementForms'
 import { ReactComponent as Login } from '../../../images/login2.svg'
 import { Alerta } from '../../style/Alerta'
 
+import { useSign } from '../../../context/SignContext'
 import { auth } from '../../../firebase'
 
 const Image = styled(Login)`
