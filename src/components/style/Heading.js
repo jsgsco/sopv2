@@ -19,7 +19,10 @@ export const Profile = styled.div`
 `
 
 export const Text = styled.p`
-    
+    text-align: center;
+    font-size: 10px;
+    text-transform: uppercase;
+    margin-top: 0.38rem;
 `
 
 export const Settings = styled.div`

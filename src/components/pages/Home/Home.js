@@ -3,11 +3,12 @@ import { useHistory } from 'react-router-dom'
 import { HeadingContainer, Header, Profile, Settings, Text } from '../../style/Heading'
 import { useAuth } from '../../../context/AuthContext'
 
+import UpdateData from '../../UpdateData'
+
 const Home = () => {
 
     const history = useHistory()
     const { user } = useAuth()
-    console.log(user.displayName)
     const closeSesion = async () => {
         try {
             await auth.signOut()
@@ -24,7 +25,7 @@ const Home = () => {
                     <HeadingContainer>
                     <Header>
                         <Profile>
-                            <Text>Hola, {user.email} es un placer tenerte aqui!</Text>
+                            <Text>Hola, {user.displayName} es un placer tenerte aqui!</Text>
                         </Profile>
                         <Settings>
                             <button
@@ -36,9 +37,9 @@ const Home = () => {
                     Texto plano
                 </HeadingContainer>
                 ) : (
-                    <HeadingContainer>
-                        Actualice sus datos
-                    </HeadingContainer>
+                    <UpdateData 
+                        user={user}
+                    />
                 )
             }
         </>

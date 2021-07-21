@@ -6,6 +6,7 @@ export const ContainerForm = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: ${(props) => props.column ? 'column' : ''};
 `
 
 export const Form = styled.form`
@@ -27,6 +28,7 @@ export const Input = styled.input`
     border: none;
     border-radius: 0.5rem; /* 8px */
     background-color: #F2F2F2;
+    margin-top: ${(props) => props.mt ? '0.38rem' : ''};
     &:focus {
         outline: none;
     }

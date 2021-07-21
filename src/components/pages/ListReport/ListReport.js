@@ -1,5 +1,5 @@
 const ListReport = () => {
-    return ('Desde Lista Objetos');
+    return ('');
 }
  
 export default ListReport;
