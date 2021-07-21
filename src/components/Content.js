@@ -31,13 +31,14 @@ const Content = ({user}) => {
 
     return ( 
         <>
-            <Helmet>
-                <title>Panel Admin</title>
-            </Helmet>
+            
             <ContainerForm>
                 {
                     register ? (
                         <Form>
+                            <Helmet>
+                                <title>Registrar Nuevo Objeto</title>
+                            </Helmet>
                             <Text>Registra un nuevo objeto perdido</Text>
                             <ContainerInput>
                                 <Input 
@@ -95,6 +96,9 @@ const Content = ({user}) => {
                         </Form>
                     ) : (
                         <>
+                            <Helmet>
+                                <title>Panel Admin</title>
+                            </Helmet>
                             <Image />
                             <Profile>
                                 <Text>Hola, {user.displayName}</Text>
