@@ -7,7 +7,7 @@ import { Alerta } from '../../style/Alerta'
 
 import { useSign } from '../../../context/SignContext'
 import { usePanel } from '../../../context/PanelContext'
-// import { auth } from '../../../firebase'
+import { auth } from '../../../firebase'
 
 const Image = styled(Login)`
     width: 40%;
@@ -22,7 +22,7 @@ const SignUp = () => {
     const { newRegister, setNewRegister } = usePanel()
     const expReg =  /[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+/
     const { dataForm, setDataForm} = useSign()
-    const {email} = dataForm
+    const { email } = dataForm
     const [alert, setAlert] = useState({
         message: '',
         type: '',
@@ -66,6 +66,51 @@ const SignUp = () => {
             }), 2500)
             return
         }
+
+        try {
+
+            await auth.createUserWithEmailAndPassword(email, email)
+            setAlert({
+                message: 'Se ha creado el nuevo empleado con exito.',
+                type: 'success',
+                state: true
+            })
+            setTimeout(() => {
+                setAlert({
+                    message: '',
+                    type: '',
+                    state: false
+                })
+            }, 2000)
+            setDataForm('')
+            await auth.signOut()
+
+        } catch (error) {
+
+            let text
+            switch (error.code) {
+                case 'auth/email-already-in-use':
+                    text = 'Este correo ya esta en uso por otro usuario.'
+                    break;
+                default:
+                    text = 'Hubo un error al intentar iniciar sesion.'
+                    break
+            }
+            setAlert({
+                message: text,
+                type: '',
+                state: true
+            })
+            setTimeout(() => {
+                setAlert({
+                    message: '',
+                    type: '',
+                    state: false
+                })
+            }, 3000);
+
+        }
+
     }
     
     const handleCancelNewRegister = () => {

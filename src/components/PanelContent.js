@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet'
-import { Text, Button, ButtonLink } from './style/ElementForms'
+import { Text, Button } from './style/ElementForms'
 import { Profile } from './style/Heading'
 import { usePanel } from '../context/PanelContext'
 import { ReactComponent as Panel } from '../images/profile.svg'
