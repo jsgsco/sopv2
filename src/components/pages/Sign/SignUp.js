@@ -1,5 +1,5 @@
 const SignUp = () => {
-    return ('');
+    return ('asdasd');
 }
  
 export default SignUp;
