@@ -7,7 +7,7 @@ const Home = () => {
 
     const history = useHistory()
     const { user } = useAuth()
-    console.log(user.email)
+    console.log(user.displayName)
     const closeSesion = async () => {
         try {
             await auth.signOut()
@@ -18,20 +18,30 @@ const Home = () => {
     }
 
     return (
-        <HeadingContainer>
-            <Header>
-                <Profile>
-                    <Text>Hola, {user.email} es un placer tenerte aqui!</Text>
-                </Profile>
-                <Settings>
-                    <button
-                        onClick={closeSesion}
-                        type="button"
-                    >Cerrar Sesion</button>
-                </Settings>
-            </Header>
-            Texto plano
-        </HeadingContainer>
+        <>
+            {
+                user.displayName ? (
+                    <HeadingContainer>
+                    <Header>
+                        <Profile>
+                            <Text>Hola, {user.email} es un placer tenerte aqui!</Text>
+                        </Profile>
+                        <Settings>
+                            <button
+                                onClick={closeSesion}
+                                type="button"
+                            >Cerrar Sesion</button>
+                        </Settings>
+                    </Header>
+                    Texto plano
+                </HeadingContainer>
+                ) : (
+                    <HeadingContainer>
+                        Actualice sus datos
+                    </HeadingContainer>
+                )
+            }
+        </>
     )
 }
 

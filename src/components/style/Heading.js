@@ -9,7 +9,8 @@ export const Header = styled.div`
     display: flex;
     justify-content: space-between;
     padding: 20px 5px;
-    background-color: #FFE849;
+    
+    box-shadow: 0px 3px rgba(0,0,0,0.1);
     border-radius: 0 0 8px 8px;
 `
 
