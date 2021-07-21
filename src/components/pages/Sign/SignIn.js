@@ -1,12 +1,13 @@
 import styled from 'styled-components'
 import { Helmet } from 'react-helmet'
 import { Fragment, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Redirect } from 'react-router-dom'
 import { ContainerForm, ContainerInput, Form, Input, Button, Text } from '../../style/ElementForms'
 import { ReactComponent as Login } from '../../../images/login2.svg'
 import { Alerta } from '../../style/Alerta'
 
 import { useSign } from '../../../context/SignContext'
+import { useAuth } from '../../../context/AuthContext'
 import { auth } from '../../../firebase'
 
 const Image = styled(Login)`
@@ -20,6 +21,7 @@ const Image = styled(Login)`
 const SignIn = () => {
 
     const history = useHistory()
+    const { user } = useAuth()
     const expReg =  /[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+/
     const { dataForm, setDataForm, stateRecover, setStateRecover } = useSign()
     const { email, password } = dataForm
@@ -202,6 +204,8 @@ const SignIn = () => {
     const handleRecover = () => {
         setStateRecover(!stateRecover)
     }
+
+    if(user) return <Redirect to="/" />
 
     return (
         <Fragment>

@@ -10,7 +10,7 @@ export const Header = styled.div`
     justify-content: space-between;
     padding: 20px 5px;
     background-color: #FFE849;
-    border-radius: 8px;
+    border-radius: 0 0 8px 8px;
 `
 
 export const Profile = styled.div`

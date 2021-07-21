@@ -6,7 +6,8 @@ import { useAuth } from '../../../context/AuthContext'
 const Home = () => {
 
     const history = useHistory()
-
+    const { user } = useAuth()
+    console.log(user.email)
     const closeSesion = async () => {
         try {
             await auth.signOut()
@@ -20,10 +21,13 @@ const Home = () => {
         <HeadingContainer>
             <Header>
                 <Profile>
-                    <Text>Hola, foeblackg@gmail.com es un placer tenerte aqui!</Text>
+                    <Text>Hola, {user.email} es un placer tenerte aqui!</Text>
                 </Profile>
                 <Settings>
-                    Configuraciones
+                    <button
+                        onClick={closeSesion}
+                        type="button"
+                    >Cerrar Sesion</button>
                 </Settings>
             </Header>
             Texto plano
