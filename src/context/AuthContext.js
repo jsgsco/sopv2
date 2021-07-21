@@ -11,17 +11,21 @@ const AuthProvider = ({children}) => {
 
     const [user, setUser] = useState()
     const [charge, setCharge] = useState(true)
+    const [refresh, setRefresh] = useState(false)
 
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
             setUser(user)
             setCharge(false)
+            setRefresh(false)
         })
-    }, [])
+    }, [refresh])
 
     return (
         <AuthContext.Provider value={{
-            user
+            user, 
+            refresh,
+            setRefresh
         }}>
             { !charge && children }
         </AuthContext.Provider>

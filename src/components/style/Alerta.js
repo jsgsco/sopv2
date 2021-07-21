@@ -14,4 +14,8 @@ export const Alerta = styled.p`
 
 export const ContainerAlerta = styled.div`
     width: 50%;
+
+    @media(max-width: 60rem){ 
+        width: 100%;
+    }
 `

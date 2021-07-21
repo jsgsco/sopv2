@@ -3,9 +3,13 @@ import { ContainerInput, ContainerForm, Input, Form, Button } from './style/Elem
 import { Text } from './style/Heading'
 import { ContainerAlerta, Alerta } from './style/Alerta'
 import { auth } from '../firebase'
+import { useAuth } from '../context/AuthContext'
+import { Helmet } from 'react-helmet'
+
 
 const UpdateData = ({user}) => {
 
+    const { refresh, setRefresh } = useAuth()
     const [name, setName] = useState('')
     const [alert, setAlert] = useState({
         message: '',
@@ -38,7 +42,7 @@ const UpdateData = ({user}) => {
             await auth.currentUser.updateProfile({
                 displayName: name
             })
-            window.location.reload()
+            setRefresh(!refresh)
         } catch (error) {
             console.log(error)
         }
@@ -54,51 +58,56 @@ const UpdateData = ({user}) => {
     }
 
     return (
-        <ContainerForm column>
-            <ContainerAlerta>
-                {
-                    alert.state ? (
-                        <Alerta success={alert.type}>{alert.message}</Alerta>
-                    ) : (
-                        <Alerta>Primero debe actualizar sus datos antes de continuar.</Alerta>
-                    )
-                }
-            </ContainerAlerta>
-            <Form
-                onSubmit={handleSubmit}
-            >
-                <ContainerInput>
-                    <Input 
-                        type="text"
-                        name="name"
-                        placeholder="Ingresa tu Nombre Completo"
-                        onChange={handleChange}
-                        value={name}
-                        autoFocus
-                    />
-                </ContainerInput>
-                <ContainerInput>
-                    <Input 
+        <>
+            <Helmet>
+                <title>Actualiza tus Datos</title>
+            </Helmet>
+            <ContainerForm column>
+                <ContainerAlerta>
+                    {
+                        alert.state ? (
+                            <Alerta success={alert.type}>{alert.message}</Alerta>
+                        ) : (
+                            <Alerta>Primero debes actualizar tus datos antes de continuar.</Alerta>
+                        )
+                    }
+                </ContainerAlerta>
+                <Form
+                    onSubmit={handleSubmit}
+                >
+                    <ContainerInput>
+                        <Input 
+                            type="text"
+                            name="name"
+                            placeholder="Ingresa tu Nombre Completo"
+                            onChange={handleChange}
+                            value={name}
+                            autoFocus
+                        />
+                    </ContainerInput>
+                    <ContainerInput>
+                        <Input 
+                            mt
+                            type="email"
+                            name="email"
+                            value={user.email}
+                            disabled
+                        />
+                    </ContainerInput>
+                    <Button 
                         mt
-                        type="email"
-                        name="email"
-                        value={user.email}
-                        disabled
-                    />
-                </ContainerInput>
-                <Button 
-                    mt
-                    type="submit"
-                >Actualizar Datos</Button>
-                <Button 
-                    mt 
-                    primary
-                    onClick={closeSesion}
-                    type="button"
-                >Cerrar Sesion</Button>
-                <Text>Conexion Segura ID {user.uid}</Text>
-            </Form>
-        </ContainerForm>
+                        type="submit"
+                    >Actualizar Datos</Button>
+                    <Button 
+                        mt 
+                        primary
+                        onClick={closeSesion}
+                        type="button"
+                    >Cerrar Sesion</Button>
+                    <Text>Conexion Segura ID {user.uid}</Text>
+                </Form>
+            </ContainerForm>
+        </>
     );
 }
  
