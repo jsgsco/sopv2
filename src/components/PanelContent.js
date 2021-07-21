@@ -41,6 +41,11 @@ const PanelContent = ({user}) => {
                     mt
                     primary
                     type="button"
+                >Registar Nuevo Empleado</Button>
+                <Button 
+                    mt
+                    primary
+                    type="button"
                     onClick={handleCloseSesion}
                 >Cerrar Sesion</Button>
             </Profile>
