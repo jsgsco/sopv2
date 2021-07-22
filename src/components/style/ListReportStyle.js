@@ -1,9 +1,25 @@
 import styled from "styled-components";
 
+export const Content = styled.div`
+    height: 100vh;
+    overflow-y: auto;
+    text-transform: uppercase;
+    @media(max-width: 1345px) {
+        width: 1000px;
+        height: 100vh;
+        overflow-x: scroll;
+    }
+`
+
+
 export const Caption = styled.caption`
     margin-bottom: 30px;
     font-weight: 800;
-    font-size: 50px;
+    width: 100%;
+    text-align: ${(props) => props.nc ? '' : 'center'};
+    text-transform: uppercase;
+    font-size: 1.063rem; /* 17px */
+    padding: 0.625rem; /* 10px */
 `
 
 export const Table = styled.table`
@@ -12,6 +28,12 @@ export const Table = styled.table`
     background-color: #2a3338;
     margin-top: 5%;
 `
+
+export const Body = styled.tbody`
+    /* height: 100vh;
+    overflow: hidden; */
+`
+
 
 export const Row = styled.tr`
     text-align: center;
