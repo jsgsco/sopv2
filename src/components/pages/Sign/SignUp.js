@@ -127,7 +127,7 @@ const SignUp = () => {
                     {
                         alert.state ? (
                             <Alerta success={alert.type}> {alert.message}</Alerta>
-                        ) : null
+                        ) : <Alerta>Al crear un nuevo usuario su sesion sera cerrada.</Alerta>
                     }
                     <Text>Registrar nuevo empleado o usuario</Text>
                     <ContainerInput>
@@ -137,6 +137,7 @@ const SignUp = () => {
                             placeholder="Ingresar Correo"
                             onChange={handleChange}
                             value={email}
+                            autoFocus
                         />
                     </ContainerInput>
                     <Button mt

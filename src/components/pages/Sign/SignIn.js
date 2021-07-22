@@ -45,7 +45,7 @@ const SignIn = () => {
         if(email === '' || password === '') {
 
             setAlert({
-                message: 'Los campos no pueden ir vacios',
+                message: 'Los campos no pueden ir vacios.',
                 state: true
             })
             setTimeout(() => setAlert({
