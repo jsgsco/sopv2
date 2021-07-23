@@ -1,12 +1,23 @@
 import { Helmet } from 'react-helmet';
-import { usePanel } from '../../../context/PanelContext';
-import { Content, Table, Row, Head, Hcell, Cell, Body, ContainerLink, BtnLink } from '../../style/Tables'
+import { usePanel } from '../context/PanelContext';
+import { db } from '../firebase';
+import { Content, Table, Row, Head, Hcell, Cell, Body, BtnAccion } from './style/Tables'
 
-const ListReport = () => {
 
-    const { tableInfo } = usePanel()
+const ListContent = ({list, setList}) => {
 
-    return !tableInfo ? null : (
+    const { refreshInfo, setRefreshInfo, tableInfo } = usePanel()
+
+    const deleteInfo = async (id) => {
+        try {
+            await db.collection('items').doc(id).delete()
+            setRefreshInfo(!refreshInfo)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    return ( 
         <Content>
             <Helmet>
                 <title>Lista de Objetos</title>
@@ -20,6 +31,7 @@ const ListReport = () => {
                         <Hcell>Elemento</Hcell>
                         <Hcell>Descripcion</Hcell>
                         <Hcell>Contacto</Hcell>
+                        <Hcell>Accion</Hcell>
                     </Row>
                 </Head>
                 <Body>
@@ -32,18 +44,24 @@ const ListReport = () => {
                                 <Cell>{info.element}</Cell>
                                 <Cell>{info.description}</Cell>
                                 <Cell>{info.contact}</Cell>
+                                <Cell>
+                                    <BtnAccion
+                                        type="button"
+                                        onClick={()=> deleteInfo(info.id)}
+                                    >Eliminar</BtnAccion>
+                                </Cell>
                             </Row>
                         ))
                     }
                 </Body>
             </Table>
-            <ContainerLink>
-                <BtnLink
-                    to="/iniciar-sesion"
-                >¿Eres administrador? ingresa ahora</BtnLink>
-            </ContainerLink>
+            <BtnAccion
+                mt
+                type="button"
+                onClick={() => setList(!list)}
+            >Volver a Registro de Objetos</BtnAccion>
         </Content>
-    );
+     );
 }
  
-export default ListReport;
+export default ListContent;

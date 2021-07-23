@@ -7,7 +7,7 @@ const RoutePrivate = ({children, ...rest}) => {
     if(user) {
         return <Route {...rest}>{children}</Route>
     } else {
-        return <Redirect to="/iniciar-sesion" />
+        return <Redirect to="/lista-objetos" />
     }
 }
 

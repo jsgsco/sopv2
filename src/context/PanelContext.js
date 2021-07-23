@@ -1,6 +1,6 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { auth } from '../firebase'
+import { auth, db } from '../firebase'
 
 const PanelContext = createContext()
 
@@ -13,6 +13,8 @@ const PanelProvider = ({children}) => {
     const [register, setRegister] = useState(false)
     const [newRegister, setNewRegister] = useState(false)
     const [userUpdate, setUserUpdate] = useState(false)
+    const [refreshInfo, setRefreshInfo] = useState(false)
+    const [tableInfo, setTableInfo] = useState([])
     const [formData, setFormData] = useState({
         name: '',
         date: '',
@@ -31,12 +33,30 @@ const PanelProvider = ({children}) => {
         }
     }
 
+    const getDataTable = async () => {
+        try {
+            const data = await db.collection('items').get()
+            const arrayData = data.docs.map(doc => ({id: doc.id, ...doc.data()}))
+            setTableInfo(arrayData)
+            setRefreshInfo(false)
+        } catch (error) {
+            
+        }
+    }
+
+    useEffect(() => {
+        getDataTable()
+    }, [refreshInfo])
+
     return ( 
         <PanelContext.Provider value={{
             register,
             newRegister,
             formData,
             userUpdate,
+            tableInfo,
+            refreshInfo,
+            setRefreshInfo,
             setUserUpdate,
             setFormData,
             setNewRegister,

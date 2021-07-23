@@ -5,12 +5,14 @@ import { usePanel } from '../context/PanelContext'
 import { useState } from 'react'
 
 import { db } from '../firebase'
+import ListContent from './ListContent'
 
 const FormContent = () => {
 
-    const { register, setRegister, formData, setFormData } = usePanel()
+    const { register, setRegister, formData, setFormData, refreshInfo, setRefreshInfo } = usePanel()
     const { name, date, element, contact, description } = formData
     const expRegular = /^([0-9])*$/
+    const [list, setList] = useState(false)
     const [alert, setAlert] = useState({
         message: '',
         type: '',
@@ -103,6 +105,7 @@ const FormContent = () => {
                 contact: '',
                 description: ''
             })
+            setRefreshInfo(!refreshInfo)
 
         } catch (error) {
 
@@ -113,80 +116,92 @@ const FormContent = () => {
     }
 
     return (  
-        <Form
-            onSubmit={handleSubmit}
-        >
-            <Helmet>
-                <title>Registrar Nuevo Objeto</title>
-            </Helmet>
+        <>
             {
-                alert.state && <Alerta success={alert.type}>{alert.message}</Alerta>
+                list ? (
+                    <ListContent 
+                        list={list}
+                        setList={setList}
+                    />
+                ) : (
+                    <Form
+                        onSubmit={handleSubmit}
+                    >
+                        <Helmet>
+                            <title>Registrar Nuevo Objeto</title>
+                        </Helmet>
+                        {
+                            alert.state && <Alerta success={alert.type}>{alert.message}</Alerta>
+                        }
+                        <Text>Registra un nuevo objeto perdido</Text>
+                        <ContainerInput>
+                            <Input 
+                                autoFocus
+                                type="text"
+                                name="name"
+                                placeholder="Ingresa el Nombre Completo del Usuario"
+                                onChange={handleChange}
+                                value={name}
+                            />
+                        </ContainerInput>
+                        <ContainerInput>
+                            <Input 
+                                mt
+                                type="date"
+                                name="date"
+                                onChange={handleChange}
+                                value={date}
+                            />
+                        </ContainerInput>
+                        <ContainerInput>
+                            <Input 
+                                mt
+                                type="text"
+                                name="element"
+                                placeholder="Ingresa el Nombre del Objeto"
+                                onChange={handleChange}
+                                value={element}
+                            />
+                        </ContainerInput>
+                        <ContainerInput>
+                            <Input 
+                                mt
+                                type="number"
+                                name="contact"
+                                placeholder="Ingresa el Numero de Contacto"
+                                onChange={handleChange}
+                                value={contact}
+                            />
+                        </ContainerInput>
+                        <ContainerInput>
+                            <InputArea
+                                mt
+                                name="description"
+                                cols="30" rows="10"
+                                onChange={handleChange}
+                                value={description}
+                            ></InputArea>
+                        </ContainerInput>
+                        <Button 
+                            mt
+                            type="submit"
+                        >Registar nuevo objeto</Button>
+                        <Button 
+                            mt
+                            primary
+                            type="button"
+                            onClick={() => setList(!list)}
+                        >Administrar objetos perdidos</Button>
+                        <Button 
+                            mt
+                            primary
+                            type="button"
+                            onClick={() => setRegister(!register)}
+                        >Cancelar registro</Button>
+                    </Form>
+                )
             }
-            <Text>Registra un nuevo objeto perdido</Text>
-            <ContainerInput>
-                <Input 
-                    autoFocus
-                    type="text"
-                    name="name"
-                    placeholder="Ingresa el Nombre Completo del Usuario"
-                    onChange={handleChange}
-                    value={name}
-                />
-            </ContainerInput>
-            <ContainerInput>
-                <Input 
-                    mt
-                    type="date"
-                    name="date"
-                    onChange={handleChange}
-                    value={date}
-                />
-            </ContainerInput>
-            <ContainerInput>
-                <Input 
-                    mt
-                    type="text"
-                    name="element"
-                    placeholder="Ingresa el Nombre del Objeto"
-                    onChange={handleChange}
-                    value={element}
-                />
-            </ContainerInput>
-            <ContainerInput>
-                <Input 
-                    mt
-                    type="number"
-                    name="contact"
-                    placeholder="Ingresa el Numero de Contacto"
-                    onChange={handleChange}
-                    value={contact}
-                />
-            </ContainerInput>
-            <ContainerInput>
-                <InputArea
-                    mt
-                    name="description"
-                    cols="30" rows="10"
-                    onChange={handleChange}
-                    value={description}
-                ></InputArea>
-            </ContainerInput>
-            <Button 
-                mt
-                type="submit"
-            >Registar nuevo objeto</Button>
-            <Button 
-                mt
-                primary
-                type="button"
-            >Administrar objetos perdidos</Button>
-            <Button 
-                mt
-                primary
-                type="button"
-                onClick={() => setRegister(!register)}
-            >Cancelar registro</Button>
-    </Form>
+        </>
     );
 }
  
