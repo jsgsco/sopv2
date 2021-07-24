@@ -2,18 +2,11 @@ import styled from "styled-components"
 import { Link } from 'react-router-dom'
 
 export const Content = styled.div`
-
     width: 100%;
     height: 100vh;
     overflow-y: auto;
     text-transform: uppercase;
-    @media(max-width: 1345px) {
-        width: 1000px;
-        height: 100vh;
-        overflow-x: scroll;
-    }
 `
-
 
 export const Caption = styled.caption`
     margin-bottom: 30px;
@@ -31,16 +24,26 @@ export const Table = styled.table`
     border-collapse: collapse;
     background-color: black;
     margin-top: 10px;
+
+    @media(max-width: 765px) {
+        width: 100%;
+    }
 `
 
 export const Body = styled.tbody`
-    /* height: 100vh;
-    overflow: hidden; */
+   //campo vacio 
 `
-
 
 export const Row = styled.tr`
     text-align: center;
+    :nth-child(even){
+        background-color: #404040;
+    }
+
+    @media(max-width: 765px) {
+        margin: 0 0 1rem 0;
+        text-align: right;
+    }
 `
 
 export const Head = styled.thead`
@@ -48,16 +51,57 @@ export const Head = styled.thead`
     border-bottom: solid 2px black;
     padding: 10px 30px;
     font-size: 14px;
+
+    @media(max-width: 765px) {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
 `
 
 export const Hcell = styled.th`
     padding: 7px 12px;
+
+    @media(max-width: 765px) {
+        margin: 0 0 1rem 0;
+    }
 `
 
 export const Cell = styled.td`
     padding: 7px 12px;
     color: white;
     font-size: 12px;
+
+    @media(max-width: 765px) {
+
+        display: block;
+        border: none;
+        position: relative;
+        padding-left: 50%;
+
+        ::before {
+            position: absolute;
+            top: 0;
+            left: 6px;
+            width: 45%;
+            padding-right: 10px;
+            white-space: nowrap;
+            text-align: left !important;  
+        }
+        :nth-of-type(1):before { content: "Id";}
+        :nth-of-type(2):before { content: "Nombre Completo";}
+        :nth-of-type(3):before { content: "Fecha de perdida";}
+        :nth-of-type(4):before { content: "Elemento";}
+        :nth-of-type(5):before { content: "Descripcion";}
+        :nth-of-type(6):before { content: "Contacto";}
+    }
+
+    @media(max-width:  362px){
+        font-size: .6rem;
+    }
+    @media(max-width:  285px){
+        font-size: .5rem;
+    }
 `
 
 export const ContainerTable = styled.div`
