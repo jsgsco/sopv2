@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet';
 import { usePanel } from '../../../context/PanelContext';
-import { Content, Table, Row, Head, Hcell, Cell, Body, ContainerLink, BtnLink } from '../../style/Tables'
+import { Content, Table, Row, Head, Hcell, Cell, Body, BtnLink } from '../../style/Tables'
 
 const ListReport = () => {
 
@@ -37,11 +37,9 @@ const ListReport = () => {
                     }
                 </Body>
             </Table>
-            <ContainerLink>
                 <BtnLink
                     to="/iniciar-sesion"
                 >¿Eres administrador? ingresa ahora</BtnLink>
-            </ContainerLink>
         </Content>
     );
 }

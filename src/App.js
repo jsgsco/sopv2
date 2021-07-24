@@ -8,28 +8,36 @@ import { AuthProvider } from './context/AuthContext'
 import { SignProvider } from './context/SignContext'
 import { PanelProvider } from './context/PanelContext'
 import RoutePrivate from './components/RoutePrivate'
+import { Helmet } from 'react-helmet'
+
+import favicon from './images/logo.png'
 
 
 function App() {
   return (
-    <AuthProvider>
-      <SignProvider>
-        <PanelProvider>
-            <Container>
-              <Router>
-                <Switch>
-                    <RoutePrivate path="/" exact>
-                      <Home />
-                    </RoutePrivate>
-                    <Route path="/iniciar-sesion" component={SignIn} exact/>
-                    <Route path="/lista-objetos" component={ListReport} exact/>
-                    <Route path="/**" component={Error} exact/>
-                </Switch>
-              </Router>
-            </Container>
-        </PanelProvider>
-      </SignProvider>
-    </AuthProvider>
+    <>
+      <Helmet>
+        <link rel="shortcut icon" href={favicon} type="image/x-icon" />
+      </Helmet>
+      <AuthProvider>
+        <SignProvider>
+          <PanelProvider>
+              <Container>
+                <Router>
+                  <Switch>
+                      <RoutePrivate path="/" exact>
+                        <Home />
+                      </RoutePrivate>
+                      <Route path="/iniciar-sesion" component={SignIn} exact/>
+                      <Route path="/lista-objetos" component={ListReport} exact/>
+                      <Route path="/**" component={Error} exact/>
+                  </Switch>
+                </Router>
+              </Container>
+          </PanelProvider>
+        </SignProvider>
+      </AuthProvider>
+    </>
   );
 }
 

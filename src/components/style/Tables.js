@@ -133,24 +133,18 @@ export const BtnAccion = styled.button`
     }
 `
 
-export const ContainerLink = styled.div`
-    text-align: center;
-    padding: 8px;
-    width: 100%;
-    background-color: #FFE849;
-    margin-top: 5px;
-
-    &:hover {
-        cursor: pointer;
-        background-color: black;
-        color: white;
-    }
-`
-
 export const BtnLink = styled(Link)`
-    text-decoration: none;
-    font-weight: 600;
-    color: black;
+    background-color: #FFE849;
     width: 100%;
-    font-size: 14px;
+    border: none;
+    color: black;
+    padding: 12px;
+    font-size: 14px; 
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
 `
